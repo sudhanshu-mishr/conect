@@ -12,6 +12,7 @@ Production-ready monorepo where FastAPI serves both API endpoints and the built 
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+(cd frontend && npm install && npm run build)
 cd frontend && npm install --package-lock-only && npm ci && npm run build && cd ..
 cd frontend && npm ci && npm run build && cd ..
 alembic upgrade head
@@ -30,6 +31,7 @@ App runs at `http://localhost:8000`.
 3. Runtime: **Python 3**.
 4. Build command:
    ```bash
+   pip install -r requirements.txt && (cd frontend && npm install && npm run build)
    pip install -r requirements.txt && cd frontend && npm install --package-lock-only && npm ci && npm run build && cd ..
    pip install -r requirements.txt && cd frontend && npm ci && npm run build && cd ..
    ```
