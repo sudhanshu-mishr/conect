@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-
+import os
 
 class Settings(BaseSettings):
     project_name: str = "Tinder Clone"
@@ -7,7 +7,12 @@ class Settings(BaseSettings):
     secret_key: str = "change-me"
     algorithm: str = "HS256"
     access_token_expire_minutes: int = 60 * 24
-    database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/tinder"
+
+    # Use persistent disk path if available (Render), otherwise local file
+    database_url: str = "sqlite+aiosqlite:///./tinder.db"
+    if os.path.exists("/data"):
+        database_url = "sqlite+aiosqlite:////data/tinder.db"
+
     frontend_url: str = "http://localhost:8000"
     upload_dir: str = "app/static/uploads"
 
