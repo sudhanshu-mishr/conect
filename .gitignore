@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+app/static/assets/
+app/static/*.html
+app/static/*.svg
+app/static/uploads/
+.DS_Store
+.env
