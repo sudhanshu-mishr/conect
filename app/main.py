@@ -17,6 +17,9 @@ app.include_router(ws.router, prefix=settings.api_prefix)
 
 static_dir = Path("app/static")
 
+# Ensure static directory exists to prevent crash
+if not static_dir.exists():
+    static_dir.mkdir(parents=True, exist_ok=True)
 
 @app.get("/{full_path:path}", include_in_schema=False)
 async def spa_fallback(full_path: str):
