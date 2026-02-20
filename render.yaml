@@ -3,6 +3,8 @@ services:
     name: tinder-clone
     env: python
     buildCommand: pip install -r requirements.txt && (cd frontend && npm install && npm run build)
+    buildCommand: pip install -r requirements.txt && cd frontend && npm install --package-lock-only && npm ci && npm run build && cd ..
+    buildCommand: pip install -r requirements.txt && cd frontend && npm ci && npm run build && cd ..
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
