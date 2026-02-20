@@ -3,7 +3,7 @@ from pathlib import Path
 
 def test_render_build_and_start_commands_present() -> None:
     data = Path("render.yaml").read_text()
-    assert "pip install -r requirements.txt && cd frontend && npm install && npm run build && cd .." in data
+    assert "pip install -r requirements.txt && cd frontend && npm install --package-lock-only && npm ci && npm run build && cd .." in data
     assert "uvicorn app.main:app --host 0.0.0.0 --port $PORT" in data
 
 
