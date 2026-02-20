@@ -5,11 +5,13 @@ services:
     buildCommand: pip install -r requirements.txt && cd frontend && npm install && npm run build
     startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: DATABASE_URL
-        sync: false
       - key: SECRET_KEY
         sync: false
       - key: FRONTEND_URL
         sync: false
       - key: PYTHON_VERSION
         value: 3.12.12
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
